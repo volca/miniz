@@ -2,6 +2,15 @@
 
 Miniz is a lossless, high performance data compression library in a single source file that implements the zlib (RFC 1950) and Deflate (RFC 1951) compressed data format specification standards. It supports the most commonly used functions exported by the zlib library, but is a completely independent implementation so zlib's licensing requirements do not apply. Miniz also contains simple to use functions for writing .PNG format image files and reading/writing/appending .ZIP format archives. Miniz's compression speed has been tuned to be comparable to zlib's, and it also has a specialized real-time compressor function designed to compare well against fastlz/minilzo.
 
+## Modifications
+
+It's based on miniz v2.1.0. It is not suitable for esp32, so I made the following modifications. 
+
+* `TDEFL_LZ_DICT_SIZE` is reduced from 32768 to 512
+* `TDEFL_LZ_CODE_BUF_SIZE` is reduced from `24*1024` to 512
+
+The changes are same with the miniz library which is built in `esp-mdf`
+
 ## Usage
 
 Please use the files from the [releases page](https://github.com/richgel999/miniz/releases) in your projects. Do not use the git checkout directly! The different source and header files are [amalgamated](https://www.sqlite.org/amalgamation.html) into one `miniz.c`/`miniz.h` pair in a build step (`amalgamate.sh`). Include `miniz.c` and `miniz.h` in your project to use Miniz.
